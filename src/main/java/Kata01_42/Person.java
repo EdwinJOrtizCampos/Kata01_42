@@ -1,22 +1,21 @@
 package Kata01_42;
 
-import java.util.Calendar;
-import java.util.GregorianCalendar;
+import java.time.LocalDate;
+import java.time.Period;
 
 public class Person {
-    private final long milPerYear = 31536000000L;
     private String name;
-    private Calendar birthDate;
+    private LocalDate birthDate;
     
-   public Person(String name, Calendar birthDate){
+   public Person(String name, LocalDate birthDate){
        this.name = name;
        this.birthDate = birthDate;
 
    }
 
     public int getAge() {
-        Calendar now = GregorianCalendar.getInstance();
-        return (int) ((now.getTimeInMillis() - birthDate.getTimeInMillis()) / milPerYear);
+        LocalDate now = LocalDate.now();
+        return Period.between(birthDate, now).getYears();
         
     }
    
